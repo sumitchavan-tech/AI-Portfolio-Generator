@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vinita Vinayak Pawar Portfolio</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+
+    background:linear-gradient(
+        -45deg,
+        #0f172a,
+        #1e293b,
+        #0f172a,
+        #1e40af
+    );
+
+    background-size:400% 400%;
+    animation:bgAnimation 12s ease infinite;
+
+    color:white;
+    min-height:100vh;
+    padding:40px;
+}
+
+@keyframes bgAnimation{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.profile-photo{
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid #38bdf8;
+    margin-bottom:20px;
+    transition:0.4s;
+}
+
+.profile-photo:hover{
+    transform:scale(1.05);
+}
+
+.hero h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#cbd5e1;
+    margin-bottom:20px;
+}
+
+#typing-text{
+    font-size:1.2rem;
+    color:#38bdf8;
+    font-weight:bold;
+    min-height:30px;
+}
+
+.action-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:10px;
+    font-weight:bold;
+    margin:5px;
+    transition:0.3s;
+}
+
+.action-btn:hover{
+    transform:translateY(-3px);
+    background:#3b82f6;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+
+    opacity:0;
+    transform:translateY(40px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        box-shadow 0.4s ease;
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 30px rgba(56,189,248,0.25);
+}
+
+.section-title{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:2rem;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+.resume-score{
+    text-align:center;
+    font-size:4rem;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+.contact{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.skills-container{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.skill-item{
+    width:100%;
+}
+
+.skill-name{
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:#38bdf8;
+    border-radius:20px;
+    transition:2s ease;
+}
+
+.project,
+.education-card,
+.experience-card{
+    background:rgba(255,255,255,0.05);
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    transition:0.3s;
+}
+
+.project:hover,
+.education-card:hover,
+.experience-card:hover{
+    transform:translateX(8px);
+}
+
+.education-card h3{
+    margin-bottom:8px;
+}
+
+.project h3,
+.experience-card h3{
+    color:#38bdf8;
+    margin-bottom:10px;
+}
+
+.experience-card ul{
+    margin-left:20px;
+    margin-top:10px;
+}
+
+.experience-card li{
+    margin-bottom:5px;
+}
+
+.light-mode{
+
+    background:white !important;
+    color:#111 !important;
+
+}
+
+.light-mode .card{
+
+    background:#f1f5f9;
+    color:#111;
+
+}
+
+.light-mode .stat-card{
+
+    background:#e2e8f0;
+    color:#111;
+
+}
+
+#theme-toggle{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    z-index:1000;
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    background:#2563eb;
+
+    color:white;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+
+    transition:0.3s;
+
+}
+
+#theme-toggle:hover{
+
+    transform:scale(1.1);
+
+}
+
+.footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    margin-top:40px;
+
+    border-top:1px solid rgba(255,255,255,0.1);
+
+    color:#cbd5e1;
+
+}
+
+.footer h3{
+
+    color:#38bdf8;
+
+    margin-bottom:10px;
+
+}
+
+</style>
+
+</head>
+
+<body id="body">
+
+<div class="container">
+
+    <div class="hero">
+
+        
+
+        <img
+        src="../photos/WhatsApp Image 2026-06-05 at 10.13.26 PM.jpeg"
+        alt="Profile Photo"
+        class="profile-photo">
+
+        
+
+       <button id="theme-toggle">
+    🌙
+</button>
+
+        <h1>Vinita Vinayak Pawar</h1>
+
+        <p id="typing-text">
+    AI Powered Portfolio
+</p>
+
+        <div>
+
+            <a
+            href="../uploads/Vinita.Resume-2.pdf"
+            download
+            class="action-btn">
+            Resume
+            </a>
+
+            
+
+            
+
+            
+
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="stat-number">
+                14
+            </div>
+            <div>Skills</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">
+                2
+            </div>
+            <div>Projects</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">
+                1
+            </div>
+            <div>Education</div>
+        </div>
+<div class="stat-card">
+    <div class="stat-number">
+        0
+    </div>
+    <div>Experience</div>
+</div>
+
+    </div>
+
+    <div class="card">
+
+        <h2 class="section-title">
+            About Me
+        </h2>
+
+        <p>
+            Aspiring Data Scientist with knowledge of Machine Learning, Deep Learning, and Data Analytics, skilled in Python, SQL, and data visualization.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+    <h2 class="section-title">
+        Resume Score
+    </h2>
+
+    <div style="display:flex;justify-content:center;">
+
+<svg width="220" height="220">
+
+    <circle
+        cx="110"
+        cy="110"
+        r="90"
+        stroke="rgba(255,255,255,0.2)"
+        stroke-width="15"
+        fill="none">
+    </circle>
+
+    <circle
+        id="score-circle"
+        cx="110"
+        cy="110"
+        r="90"
+        stroke="#38bdf8"
+        stroke-width="15"
+        fill="none"
+        stroke-linecap="round"
+        stroke-dasharray="565"
+        stroke-dashoffset="565"
+        transform="rotate(-90 110 110)">
+    </circle>
+
+    <text
+        x="110"
+        y="120"
+        text-anchor="middle"
+        fill="#38bdf8"
+        font-size="36"
+        font-weight="bold">
+
+        70%
+
+    </text>
+
+</svg>
+
+</div>
+
+    
+
+    <p style="text-align:center;color:#facc15;font-size:20px;margin-top:15px;">
+        Good Resume - Needs Minor Improvements
+    </p>
+
+    
+
+</div>
+
+    <div class="card">
+
+    <h2 class="section-title">
+        Recommended Career Paths
+    </h2>
+
+    
+
+        
+
+        <div class="project">
+            Data Scientist
+        </div>
+
+
+        
+
+        <div class="project">
+            Data Analyst
+        </div>
+
+
+        
+
+        <div class="project">
+            Business Intelligence Developer
+        </div>
+
+
+        
+
+        <div class="project">
+            Machine Learning Engineer
+        </div>
+
+
+        
+
+        <div class="project">
+            Data Engineer
+        </div>
+
+
+        
+
+    
+
+</div>
+
+<div class="card">
+
+    <h2 class="section-title">
+        Suggested Skills To Learn
+    </h2>
+
+    
+
+        
+
+        <div class="project">
+            Cloud Computing
+        </div>
+
+        
+
+        <div class="project">
+            Big Data
+        </div>
+
+        
+
+        <div class="project">
+            Natural Language Processing
+        </div>
+
+        
+
+        <div class="project">
+            Computer Vision
+        </div>
+
+        
+
+        <div class="project">
+            Web Development
+        </div>
+
+        
+
+    
+
+</div>
+
+<div class="card">
+
+    <h2 class="section-title">
+        AI Insights
+    </h2>
+
+    <h3 style="color:#38bdf8; margin-bottom:15px;">
+        Strengths
+    </h3>
+
+    
+
+        
+
+        <div class="project">
+            ✓ Strong foundation in Data Science
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Proficient in Python and its libraries
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Experience in data visualization and machine learning
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Good communication skills
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Participation in Guinness World Record
+        </div>
+
+        
+
+    
+
+    <br>
+
+    <h3 style="color:#38bdf8; margin-bottom:15px;">
+        Learning Recommendations
+    </h3>
+
+    
+
+        
+
+        <div class="project">
+            ✓ Take online courses in Cloud Computing and Big Data
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Learn Natural Language Processing and Computer Vision
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Develop skills in Web Development
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Participate in Kaggle competitions
+        </div>
+
+        
+
+        <div class="project">
+            ✓ Read books on Data Science and Machine Learning
+        </div>
+
+        
+
+    
+
+</div>
+
+
+
+    <div class="card">
+
+        <h2 class="section-title">
+            Contact
+        </h2>
+
+        <div class="contact">
+
+            <div>
+                <strong>Email</strong><br>
+                pawarvinitav@gmail.com
+            </div>
+
+            <div>
+                <strong>Phone</strong><br>
+                +91 9699940171
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2 class="section-title">
+            Education
+        </h2>
+
+        
+
+        <div class="education-card">
+
+            <h3>B.Sc. Data Science</h3>
+
+            <p>Savitribai Phule Pune University</p>
+
+            <p>Aug 2023 – June 2027</p>
+
+        </div>
+
+        
+
+    </div>
+
+    <div class="card">
+
+        <h2 class="section-title">
+            Experience
+        </h2>
+
+        
+
+            <p>No experience available.</p>
+
+        
+
+    </div>
+
+    <div class="card">
+
+        <h2 class="section-title">
+            Skills
+        </h2>
+
+        <div class="skills-container">
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Python
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        NumPy
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Pandas
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Seaborn
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Matplotlib
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Machine Learning
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Deep Learning
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        SQL
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Excel
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Power BI
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Marathi
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        English
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        Hindi
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+<div class="skill-item">
+
+    <div class="skill-name">
+        German
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+
+</div>
+
+    </div>
+
+    <div class="card">
+
+        <h2 class="section-title">
+            Projects
+        </h2>
+
+        
+
+        <div class="project">
+
+            <h3>Healthcare Data Analysis Project</h3>
+
+            <p>Analyzed healthcare datasets to extract useful insights using Python libraries like Pandas, Seaborn, and NumPy.</p>
+
+        </div>
+
+        
+
+        <div class="project">
+
+            <h3>Weather Prediction Project</h3>
+
+            <p>Implemented a simple machine learning model to predict weather conditions using Python.</p>
+
+        </div>
+
+        
+
+    </div>
+
+</div>
+
+<script>
+
+const text =
+"Data Scientist | AI Engineer | Machine Learning Enthusiast";
+
+let index = 0;
+
+function typeEffect(){
+
+    if(index < text.length){
+
+        document.getElementById("typing-text").innerHTML += text.charAt(index);
+
+        index++;
+
+        setTimeout(typeEffect, 60);
+    }
+}
+
+window.onload = typeEffect;
+
+</script>
+
+<script>
+
+const cards = document.querySelectorAll(".card");
+
+const observer = new IntersectionObserver(
+
+(entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},
+{
+    threshold:0.1
+}
+
+);
+
+cards.forEach(card=>{
+
+    observer.observe(card);
+
+});
+
+const bars = document.querySelectorAll(".progress-fill");
+
+bars.forEach(bar=>{
+
+    const randomWidth =
+        Math.floor(
+            Math.random() * 30
+        ) + 70;
+
+    setTimeout(()=>{
+
+        bar.style.width =
+            randomWidth + "%";
+
+    },500);
+
+});
+
+const score =
+parseInt("70");
+
+const circle =
+document.getElementById("score-circle");
+
+if(circle){
+
+    const circumference = 565;
+
+    const offset =
+        circumference -
+        (score / 100) * circumference;
+
+    setTimeout(()=>{
+
+        circle.style.transition =
+            "stroke-dashoffset 2s ease";
+
+        circle.style.strokeDashoffset =
+            offset;
+
+    },500);
+
+}
+
+const themeBtn =
+document.getElementById("theme-toggle");
+
+const body =
+document.getElementById("body");
+
+themeBtn.addEventListener("click", ()=>{
+
+    body.classList.toggle("light-mode");
+
+    if(body.classList.contains("light-mode")){
+
+        themeBtn.innerHTML = "☀️";
+
+    }
+    else{
+
+        themeBtn.innerHTML = "🌙";
+
+    }
+
+});
+
+</script>
+
+<footer class="footer">
+
+    <h3>Vinita Vinayak Pawar</h3>
+
+    <p>
+        Built using AI Portfolio Generator
+    </p>
+
+    <p>
+        Powered by Python • Flask • Groq AI
+    </p>
+
+</footer>
+
+</body>
+</html>
