@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+uploads/
+photos/
+generated_portfolios/
+generated_pdfs/
+.env

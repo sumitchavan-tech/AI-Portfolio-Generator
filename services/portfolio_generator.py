@@ -4,6 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 from pydantic import ValidationError
 
 from services.models import ResumeData
+from services.pdf_generator import generate_pdf
 
 
 def generate_portfolio(
@@ -108,11 +109,15 @@ def generate_portfolio(
     )
 
     with open(
-        output_path,
-        "w",
-        encoding="utf-8"
-    ) as file:
+    output_path,
+    "w",
+    encoding="utf-8"
+) as file:
 
-        file.write(output)
+     file.write(output)
 
+    generate_pdf(
+    resume,
+    safe_name
+)
     return output_path

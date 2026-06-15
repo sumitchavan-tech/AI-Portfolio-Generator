@@ -7,7 +7,6 @@ from services.portfolio_generator import generate_portfolio
 from services.link_extractor import extract_links
 
 app = Flask(__name__)
-
 UPLOAD_FOLDER = "uploads"
 PHOTO_FOLDER = "photos"
 
@@ -17,6 +16,7 @@ app.config["PHOTO_FOLDER"] = PHOTO_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PHOTO_FOLDER, exist_ok=True)
 os.makedirs("generated_portfolios", exist_ok=True)
+os.makedirs("generated_pdfs", exist_ok=True)
 
 @app.route('/')
 def home():
@@ -27,13 +27,27 @@ def open_portfolio(filename):
     return send_from_directory(
         "generated_portfolios",
         filename
+) 
+
+@app.route('/photos/<filename>')
+def serve_photo(filename):
+    return send_from_directory(
+        "photos",
+        filename
     )
+
+@app.route('/pdf/<filename>')
+def download_pdf(filename):
+    return send_from_directory(
+        "generated_pdfs",
+        filename,
+        as_attachment=True
+)
 
 @app.route('/upload', methods=['POST'])
 def upload_resume():
 
     try:
-
 
         if 'resume' not in request.files:
             return """
@@ -107,9 +121,7 @@ def upload_resume():
         return f"""
         <h1>Portfolio Generated Successfully!</h1>
 
-        <p>
-        Portfolio saved successfully.
-        </p>
+        <p>Portfolio saved successfully.</p>
 
         <br>
 
@@ -120,13 +132,13 @@ def upload_resume():
 
     except Exception as e:
 
-     print("ERROR:", e)
+        print("ERROR:", e)
 
-    return f"""
-    <h1>Something Went Wrong</h1>
+        return f"""
+        <h1>Something Went Wrong</h1>
 
-    <p>{str(e)}</p>
-    """
+        <p>{str(e)}</p>
+        """
 
 if __name__ == "__main__":
     app.run(debug=True)
