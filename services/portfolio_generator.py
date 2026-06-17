@@ -1,4 +1,6 @@
 import json
+import os
+import qrcode
 
 from jinja2 import Environment, FileSystemLoader
 from pydantic import ValidationError
@@ -57,22 +59,40 @@ def generate_portfolio(
         "portfolio_template.html"
     )
 
+    safe_name = (
+        resume.name
+        .replace(" ", "_")
+        .replace("/", "_")
+        .replace("\\", "_")
+    )
+
+    os.makedirs(
+        "static/qr_codes",
+        exist_ok=True
+    )
+
+    qr_path = (
+        f"static/qr_codes/{safe_name}.png"
+    )
+
+    RENDER_URL = "https://your-app-name.onrender.com"
+
+    qr = qrcode.make(
+    f"{RENDER_URL}/portfolio/{safe_name}.html"
+)
+
+    qr.save(qr_path)
+
     output = template.render(
 
         name=resume.name,
-
         email=resume.email,
-
         phone=resume.phone,
-
         summary=resume.summary,
-
         resume_score=resume.resume_score,
 
         github=resume.github,
-
         linkedin=resume.linkedin,
-
         portfolio=resume.portfolio,
 
         skills=resume.skills,
@@ -93,15 +113,9 @@ def generate_portfolio(
 
         resume_filename=resume_filename,
 
-        photo_filename=photo_filename
+        photo_filename=photo_filename,
 
-    )
-
-    safe_name = (
-        resume.name
-        .replace(" ", "_")
-        .replace("/", "_")
-        .replace("\\", "_")
+        qr_code=f"qr_codes/{safe_name}.png"
     )
 
     output_path = (
@@ -109,15 +123,16 @@ def generate_portfolio(
     )
 
     with open(
-    output_path,
-    "w",
-    encoding="utf-8"
-) as file:
+        output_path,
+        "w",
+        encoding="utf-8"
+    ) as file:
 
-     file.write(output)
+        file.write(output)
 
     generate_pdf(
-    resume,
-    safe_name
-)
+        resume,
+        safe_name
+    )
+
     return output_path

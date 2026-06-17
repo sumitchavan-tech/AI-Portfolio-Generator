@@ -358,6 +358,12 @@ body{
             Resume
             </a>
 
+            <a
+href="/pdf/{{ name.replace(' ','_') }}.pdf"
+class="action-btn">
+Download PDF
+</a>
+
             {% if github %}
             <a
             href="{{ github }}"
@@ -437,6 +443,59 @@ body{
     <h2 class="section-title">
         Resume Score
     </h2>
+
+    <div class="card">
+
+    <h2 class="section-title">
+        ATS Dashboard
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="stat-number">
+                {{ resume_score }}
+            </div>
+            <div>ATS Score</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">
+                {{ strengths|length }}
+            </div>
+            <div>Strengths</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">
+                {{ skill_gaps|length }}
+            </div>
+            <div>Skill Gaps</div>
+        </div>
+
+    </div>
+
+    {% if resume_score|int >= 80 %}
+
+    <div class="project">
+        ✅ Excellent Resume
+    </div>
+
+    {% elif resume_score|int >= 60 %}
+
+    <div class="project">
+        ⚠️ Good Resume - Can Improve
+    </div>
+
+    {% else %}
+
+    <div class="project">
+        ❌ Resume Needs Improvement
+    </div>
+
+    {% endif %}
+
+</div>
 
     <div style="display:flex;justify-content:center;">
 
@@ -733,7 +792,31 @@ body{
         {% endfor %}
 
     </div>
+<div class="card">
 
+    <h2 class="section-title">
+        Portfolio QR Code
+    </h2>
+
+    <div style="text-align:center;">
+
+        <img
+        src="../static/{{ qr_code }}"
+        alt="Portfolio QR Code"
+        style="
+            width:220px;
+            border-radius:15px;
+            background:white;
+            padding:10px;
+        ">
+
+        <p style="margin-top:15px;">
+            Scan to access this portfolio
+        </p>
+
+    </div>
+
+</div>
 </div>
 
 <script>
