@@ -75,7 +75,7 @@ def generate_portfolio(
         f"static/qr_codes/{safe_name}.png"
     )
 
-    RENDER_URL = "https://your-app-name.onrender.com"
+    RENDER_URL = "https://ai-portfolio-generator-sbx2.onrender.com"
 
     qr = qrcode.make(
     f"{RENDER_URL}/portfolio/{safe_name}.html"
